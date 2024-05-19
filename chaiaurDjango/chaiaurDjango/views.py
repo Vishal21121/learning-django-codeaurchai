@@ -6,7 +6,9 @@ def home(request):
     return render(request,'website/index.html')
 
 def about(request):
-    return HttpResponse("Hello, world. You are at chat aur Django About page")
+    # return HttpResponse("Hello, world. You are at chat aur Django About page")
+    return render(request,'website/about.html')
 
 def contact(request):
-    return HttpResponse("Hello, world. You are at chat aur Django Contact page") 
+    # return HttpResponse("Hello, world. You are at chat aur Django Contact page") 
+    return render(request,'website/contact.html')
