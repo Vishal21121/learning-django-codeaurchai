@@ -1,14 +1,18 @@
-{% extends "layout.html" %}
-
-{% block title %}
-    Chai Page
-{% endblock %}
+{% extends "layout.html" %} {% block title %} Chai Page {% endblock %} {% block
+content %}
+<h1>Chai detail page</h1>
 
 
 {% block content %}
-<h1>Chai detail page</h1>
 
-<h3>{{chai.name}}</h3>
-<h3>{{chai.description}}</h3>
+<div class="chai-item bg-gray-300 p-4 rounded w-1/4 mx-auto">
+  <img class="rounded shadow-lg" src="{{chai.image.url}}" alt="" />
+  <div class="flex items-center justify-between gap-2 mt-2">
+    <h1 class="text-2xl font-bold">{{chai.name}}</h1>
+    <p class="text-xl font-semibold bg-blue-500 p-1 rounded-xl">
+      Pricing: {{chai.pricing}}
+    </p>
+  </div>
+</div>
 
 {% endblock %}

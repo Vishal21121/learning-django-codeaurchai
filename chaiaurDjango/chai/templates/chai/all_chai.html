@@ -10,7 +10,10 @@
         {% for chai in chais  %}
             <div class="chai-item bg-gray-300 p-4 rounded ">
                 <img class="rounded shadow-lg" src="{{chai.image.url}}" alt="">
-                <h1 class="text-2xl font-bold">{{chai.name}}</h1>
+                <div class="flex items-center justify-between gap-2 mt-2">
+                    <h1 class="text-2xl font-bold">{{chai.name}}</h1>
+                    <p class="text-xl font-semibold bg-blue-500 p-1 rounded-xl">Pricing: {{chai.pricing}}</p>
+                </div>
                 {% comment %} 
                 here url shows we want to use url
                 then we need to provide name which we have mentioned from the name we have provided in urls and then the actual value we have to provide
@@ -22,6 +25,7 @@
                         {{chai.type}} - {{chai.id}}
                     </button>
                 </a>
+
             </div>
         {% endfor %}
     </div>
