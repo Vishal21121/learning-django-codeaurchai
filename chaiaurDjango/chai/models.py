@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class ChaiVariety(models.Model):
@@ -19,3 +20,36 @@ class ChaiVariety(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# one to Many
+class ChaiReview(models.Model):
+    # TODO: learn cascade
+    chai = models.ForeignKey(ChaiVariety, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()
+    date_added = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.user.username} review for {self.chai.name}'
+
+# Many to Many
+class Store(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    # related_name is the name of this field in another table for ex: it will be known as stores in ChaiVariety table
+    chai_varieties = models.ManyToManyField(ChaiVariety,related_name='stores')
+
+    def __str__(self):
+        return self.name
+
+# one to one
+class ChaiCertificate(models.Model):
+    chai = models.OneToOneField(ChaiVariety,on_delete=models.CASCADE,related_name='certificate')
+    certificate_number = models.CharField(max_length=100)
+    issue_date = models.DateTimeField(default=timezone.now)
+    valid_until = models.DateTimeField()
+
+    def __str__(self) :
+        return f'certicate for {self.chai.name}'
